@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>お天気アプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app" :class="weather(color)">
+        <header>
+            <h1>Todays Weather</h1>
+        </header>
+        <main>
+            <div id="area">
+                <h2>都市を選択してください</h2>
+
+                <label v-for="item in radioDeta">
+                    <input name="city" type="radio" :value="item.value" :data="item.data" @change="getTokyo"
+                        v-model="city">{{item.value}}
+                </label>
+
+            </div>
+            <transition>
+                <div id="weather">
+                    <p class="day">{{day}}</p>
+                    <p class="city">{{city}}</p>
+                    <p class="condition">{{condition.main　| newWeather}}{{condition.sub}}</p>
+                    <div class="flex">
+
+                        <p class="temp">{{temp | newtemp}}℃</p>
+
+                        <div class="detail">
+                            <p class="maxtemp">最高気温{{maxtemp | newtemp}}℃</p>
+                            <p class="mintemp">最低気温{{mintemp | newtemp}}℃</p>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </main>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

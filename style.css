@@ -1,0 +1,72 @@
+@charset "utf-8";
+html {
+}
+body {
+  padding: 0;
+  margin: 10% auto 0;
+  max-width: 800px;
+  color: #333;
+}
+header {
+  border-bottom: 1px solid rgb(207, 207, 207);
+  padding: 10px 20px;
+}
+h1 {
+  font-size: 26px;
+  margin: 0 auto;
+}
+h2{
+    font-size: 1.2rem;
+}
+p{
+    margin: 0;
+}
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.2);
+}
+main {
+  padding: 1rem 1.5rem;
+}
+.flex{
+    display: flex;
+    align-items: flex-end;
+    margin-top: 30px;
+}
+#weather{
+    margin-top: 3rem;
+}
+.city{
+    font-size: 1.5rem;
+}
+.temp{
+    font-size: 2.5rem;
+}
+.condition{
+  
+}
+.detail{
+    margin:0 0 0 40px;
+}
+
+#app.clear{
+  background: rgb(255, 244, 186);
+}
+
+#app.rain{
+  background: rgb(223, 231, 255);;
+}
+
+#app.clouds{
+  background: rgb(234, 234, 234);
+}
+
+#app.mist{
+  background: rgb(241, 254, 255);
+}
+#app.drizzle{
+  background: rgb(246, 244, 255);
+}
