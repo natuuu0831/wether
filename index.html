@@ -21,7 +21,7 @@
                 <h2>都市を選択してください</h2>
 
                 <label v-for="item in radioDeta">
-                    <input name="city" type="radio" :value="item.value" :data="item.data" @change="getTokyo"
+                    <input name="city" type="radio" :value="item.value" :data="item.data" @change="getCity"
                         v-model="city">{{item.value}}
                 </label>
 
@@ -30,7 +30,7 @@
                 <div id="weather">
                     <p class="day">{{day}}</p>
                     <p class="city">{{city}}</p>
-                    <p class="condition">{{condition.main　| newWeather}}{{condition.sub}}</p>
+                    <p class="condition">{{condition.main}}{{condition.sub}}</p>
                     <div class="flex">
 
                         <p class="temp">{{temp | newtemp}}℃</p>

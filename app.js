@@ -1,11 +1,3 @@
-var getApi = function(res) {
-  // this.city = res.data.name;
-  this.temp = res.data.main.temp;
-  this.maxtemp = res.data.main.temp_max;
-  this.mintemp = res.data.main.temp_min;
-  this.condition.main = res.data.weather[0].main;
-};
-
 var app = new Vue({
   el: "#app",
   data: {
@@ -26,40 +18,46 @@ var app = new Vue({
       { value: "大阪", data: "1853909" },
       { value: "福岡", data: "1859307" }
     ],
-    check: "",
-    classClear: "clear",
-    classCloud: "cloud",
-    classRain: "rain",
-    classMist: "mist",
     color: ""
   },
   methods: {
-    getTokyo: function(event) {
+    getCity: function(event) {
       axios
         .get(
           `http://api.openweathermap.org/data/2.5/weather?id=${event.target.getAttribute(
             "data"
           )}&units=metric&APPID=bba8e5a1724d6f61fc6bc87a5a82221d`
         )
-        .then(getApi.bind(this));
+        .then(function(res) {
+          // this.city = res.data.name;
+          this.temp = res.data.main.temp;
+          this.maxtemp = res.data.main.temp_max;
+          this.mintemp = res.data.main.temp_min;
+          this.condition.main = res.data.weather[0].main;
+        }.bind(this));
     },
     weather: function(color) {
       switch (this.condition.main) {
         case "Clear":
-          color = "clear";
+          this.color = "clear";
+          this.condition.main = "晴れ";
           break;
         case "Clouds":
-          color = "clouds";
+          this.color = "clouds";
+          this.condition.main = "曇り";
           break;
         case "Rain":
-          color = "rain";
+          this.color = "rain";
+          this.condition.main = "雨";
           break;
         case "Mist":
-          color = "mist";
+          this.color = "mist";
+          this.condition.main = "霧";
           break;
-          case "Drizzle":
-            color = "drizzle";
-            break;  
+        case "Drizzle":
+          this.color = "drizzle";
+          this.condition.main = "霧雨";
+          break;
         default:
           break;
       }
@@ -69,28 +67,6 @@ var app = new Vue({
   filters: {
     newtemp: function(val) {
       return Math.ceil(val);
-    },
-    newWeather: function(val) {
-      switch (val) {
-        case "Clear":
-          val = "晴れ";
-          break;
-        case "Clouds":
-          val = "曇り";
-          break;
-        case "Rain":
-          val = "雨";
-          break;
-        case "Mist":
-          val = "霧";
-          break;
-          case "Drizzle":
-          val = "霧雨";
-          break; 
-        default:
-          break;
-      }
-      return val;
     }
   },
   mounted() {
@@ -104,7 +80,5 @@ var app = new Vue({
     var todayDate = `${month}月${date}日${sevenday[day]}曜日${hours}時現在`;
     return (this.day = todayDate);
   },
-  computed: {
-    
-  }
+  computed: {}
 });
